@@ -248,6 +248,15 @@
                                 </StackPanel>
                                 <Slider Name="SliderTrailRefresh" Grid.Row="1" Minimum="10" Maximum="240" TickFrequency="10" IsSnapToTickEnabled="True" ValueChanged="EffectSlider_ValueChanged"/>
                             </Grid>
+
+                            <Grid Margin="0,0,0,15">
+                                <Grid.RowDefinitions><RowDefinition/><RowDefinition/></Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                    <TextBlock Text="拖尾最大透明度" Foreground="#555" FontSize="13"/>
+                                    <TextBlock Name="TextTrailMaxOpacityValue" Text="100%" Foreground="#45AFFF" Margin="8,0,0,0" FontWeight="Bold"/>
+                                </StackPanel>
+                                <Slider Name="SliderTrailMaxOpacity" Grid.Row="1" Minimum="0.1" Maximum="1.0" TickFrequency="0.05" IsSnapToTickEnabled="True" ValueChanged="EffectSlider_ValueChanged"/>
+                            </Grid>
                         </StackPanel>
                     </Border>
 

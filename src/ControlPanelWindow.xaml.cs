@@ -358,6 +358,7 @@ namespace BASpark
             SliderOpacity.Value = ConfigManager.EffectOpacity;
             SliderSpeed.Value = ConfigManager.EffectSpeed;
             SliderTrailRefresh.Value = ConfigManager.TrailRefreshRate;
+            SliderTrailMaxOpacity.Value = ConfigManager.TrailMaxOpacity;
             UpdateEffectValueTexts();
         }
 
@@ -436,6 +437,7 @@ namespace BASpark
             TextOpacityValue.Text = $"{SliderOpacity.Value:P0}";
             TextSpeedValue.Text = $"{SliderSpeed.Value:F2}x";
             TextTrailRefreshValue.Text = $"{Math.Round(SliderTrailRefresh.Value)}";
+            TextTrailMaxOpacityValue.Text = $"{SliderTrailMaxOpacity.Value:P0}";
         }
 
         private void EffectSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -514,6 +516,7 @@ namespace BASpark
             double effectOpacity = Math.Round(SliderOpacity.Value, 2);
             double effectSpeed = Math.Round(SliderSpeed.Value, 2);
             int trailRefreshRate = (int)Math.Round(SliderTrailRefresh.Value);
+            double trailMaxOpacity = Math.Round(SliderTrailMaxOpacity.Value, 2);
             bool autoStartEnabled = CheckAutoStart.IsChecked ?? false;
             bool startSilentEnabled = CheckStartSilent.IsChecked ?? false;
             bool runAsAdminEnabled = CheckRunAsAdmin.IsChecked ?? false;
@@ -532,6 +535,7 @@ namespace BASpark
             ConfigManager.Save("EffectOpacity", effectOpacity);
             ConfigManager.Save("EffectSpeed", effectSpeed);
             ConfigManager.Save("TrailRefreshRate", trailRefreshRate);
+            ConfigManager.Save("TrailMaxOpacity", trailMaxOpacity);
             ConfigManager.Save("TotalClicks", ConfigManager.TotalClicks);
             ConfigManager.Save("EnableAlwaysTrailEffect", CheckAlwaysTrailEffectSwitch.IsChecked ?? false);
             ConfigManager.Save("StartSilent", startSilentEnabled);
@@ -546,6 +550,7 @@ namespace BASpark
             App.Overlay?.UpdateColor(ConfigManager.ParticleColor);
             App.Overlay?.UpdateEffectSettings(effectScale, effectOpacity, effectSpeed);
             App.Overlay?.UpdateTrailRefreshRate(trailRefreshRate);
+            App.Overlay?.UpdateTrailMaxOpacity(trailMaxOpacity);
             App.Overlay?.RefreshEnvironmentFilterState();
 
             bool isCurrentAdmin = new WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator);

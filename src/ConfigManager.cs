@@ -30,6 +30,7 @@ namespace BASpark
         public static double EffectOpacity { get; set; } = 1.0;
         public static double EffectSpeed { get; set; } = 1.0;
         public static int TrailRefreshRate { get; set; } = 40;
+        public static double TrailMaxOpacity { get; set; } = 1.0;
         public static bool EnableEnvironmentFilter { get; set; } = false;
         public static bool HideInFullscreen { get; set; } = true;
         public static ProcessFilterModeOption ProcessFilterMode { get; set; } = ProcessFilterModeOption.Disabled;
@@ -58,6 +59,7 @@ namespace BASpark
                         EffectOpacity = Math.Clamp(Convert.ToDouble(key.GetValue("EffectOpacity", 1.0)), 0.1, 1.0);
                         EffectSpeed = Math.Clamp(Convert.ToDouble(key.GetValue("EffectSpeed", 1.0)), 0.2, 3.0);
                         TrailRefreshRate = Math.Clamp(Convert.ToInt32(key.GetValue("TrailRefreshRate", 40)), 10, 240);
+                        TrailMaxOpacity = Math.Clamp(Convert.ToDouble(key.GetValue("TrailMaxOpacity", 1.0)), 0.1, 1.0);
                         EnableEnvironmentFilter = Convert.ToBoolean(key.GetValue("EnableEnvironmentFilter", false));
                         HideInFullscreen = Convert.ToBoolean(key.GetValue("HideInFullscreen", true));
 
@@ -171,6 +173,7 @@ namespace BASpark
                 EffectOpacity = 1.0;
                 EffectSpeed = 1.0;
                 TrailRefreshRate = 40;
+                TrailMaxOpacity = 1.0;
                 EnableEnvironmentFilter = false;
                 HideInFullscreen = true;
                 ProcessFilterMode = ProcessFilterModeOption.Disabled;

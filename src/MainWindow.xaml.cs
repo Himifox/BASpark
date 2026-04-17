@@ -192,6 +192,15 @@ namespace BASpark
                 $"if(window.updateEffectSettings) window.updateEffectSettings({scaleStr}, {opacityStr}, {speedStr});");
         }
 
+        public void UpdateTrailMaxOpacity(double maxOpacity)
+        {
+            if (webView?.CoreWebView2 == null) return;
+
+            string maxOpacityStr = maxOpacity.ToString("F2", CultureInfo.InvariantCulture);
+            _ = webView.CoreWebView2.ExecuteScriptAsync(
+                $"if(window.updateTrailMaxOpacity) window.updateTrailMaxOpacity({maxOpacityStr});");
+        }
+
         public void UpdateTrailRefreshRate(int hz)
         {
             hz = Math.Clamp(hz, 10, 240);
@@ -240,6 +249,7 @@ namespace BASpark
                         _lastReportedAlwaysTrail = null;
                         UpdateColor(ConfigManager.ParticleColor);
                         UpdateEffectSettings(ConfigManager.EffectScale, ConfigManager.EffectOpacity, ConfigManager.EffectSpeed);
+                        UpdateTrailMaxOpacity(ConfigManager.TrailMaxOpacity);
                         SyncInputContext(InputModeMouse);
                     };
                 }
